@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { UIManager } from 'react-native';
-//import SplashScreen from 'react-native-splash-screen';
+import SplashScreen from 'react-native-splash-screen';
 
 import RootNavigation from './navigation';
 
@@ -9,7 +9,7 @@ UIManager.setLayoutAnimationEnabledExperimental &&
 
 export default class App extends Component {
   componentDidMount() {
-    //SplashScreen.hide();
+    SplashScreen.hide();
   }
 
   render() {

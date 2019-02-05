@@ -11,7 +11,7 @@ function* loadFilmsSaga() {
     yield put(saveFilms(response.films)); //TODO:
   } catch (e) {
     console.log(e);
-    alert(e.message); //TODO:
+    // alert(e.message); //TODO:
   }
 }
 
