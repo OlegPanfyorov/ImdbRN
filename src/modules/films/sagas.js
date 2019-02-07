@@ -5,13 +5,12 @@ import { FILMS_LOAD, saveFilms } from './actions';
 function* loadFilmsSaga() {
   try {
     const response = yield call(Api.loadFilms);
-
-    console.log(response);
-
-    yield put(saveFilms(response.films)); //TODO:
+    const res = yield response.json()
+    const { data: { movies = [] } = {} } = res
+    yield put(saveFilms(movies));
   } catch (e) {
     console.log(e);
-    // alert(e.message); //TODO:
+    // alert(e.message);
   }
 }
 

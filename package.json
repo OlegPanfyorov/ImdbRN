@@ -9,6 +9,7 @@
   "dependencies": {
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
+    "query-string": "^6.2.0",
     "react": "16.6.3",
     "react-native": "0.57.8",
     "react-native-gesture-handler": "^1.0.12",

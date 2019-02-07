@@ -1,6 +1,6 @@
 import { call } from 'redux-saga/effects';
-
-import BACKEND_URL from '../config';
+import { BACKEND_URL, TOKEN } from '../config';
+import { stringify } from 'query-string';
 
 /**
  * Wrapper for debugging API requests
@@ -41,11 +41,17 @@ export function* requestApiSaga(apiFunctionName, apiFunction, ...params) {
 }
 
 function loadFilms() {
-  return fetch(`${BACKEND_URL}/films`, {
+  const params = {
+    token: TOKEN,
+    end: 20,
+    format: 'json',
+    data: '0',
+  };
+  return fetch(`${BACKEND_URL}/imdb/top?${stringify(params)}`, {
     method: 'GET',
   });
 }
 
 export default {
-  loadFilms
+  loadFilms,
 };
