@@ -1,16 +1,17 @@
 import { all, takeLatest, call, put } from 'redux-saga/effects';
 import Api from '../../api';
 import { FILMS_LOAD, saveFilms } from './actions';
+import mockedMovies from '../../api/mocks/films.json'
 
-function* loadFilmsSaga() {
+function* loadFilmsSaga() { 
   try {
-    const response = yield call(Api.loadFilms);
-    const res = yield response.json()
-    const { data: { movies = [] } = {} } = res
+    // const response = yield call(Api.loadFilms);
+    // const res = yield response.json()
+    const { data: { movies = [] } = {} } = mockedMovies
+    console.log('[fetchMovies response]', movies)
     yield put(saveFilms(movies));
   } catch (e) {
-    console.log(e);
-    // alert(e.message);
+    alert(e.message);
   }
 }
 

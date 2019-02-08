@@ -1,8 +1,44 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Dimensions, Image } from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Animated,
+} from 'react-native';
 const imdbIcon = require('../../../../assets/images/imdb_small.png');
+import Images from '../../../../assets/images';
 
 export default class TopFilmsListItem extends Component {
+  constructor() {
+    super();
+    this.springValue = new Animated.Value(1);
+  }
+
+  favouriteSelected() {
+    const {
+      filmObject: {
+        item: { isFavourite = 0 },
+      },
+    } = this.props;
+
+    if (!isFavourite) this.playFavouriteAnimation();
+  }
+
+  playFavouriteAnimation() {
+    this.springValue.setValue(1);
+    Animated.sequence([
+      Animated.spring(this.springValue, {
+        toValue: 1.2,
+        friction: 1
+      }),
+      Animated.spring(this.springValue, {
+        toValue: 1
+      }),
+    ]).start();
+  }
+
   _renderImage(object) {
     return <Image source={{ uri: object.urlPoster }} style={styles.image} />;
   }
@@ -11,6 +47,7 @@ export default class TopFilmsListItem extends Component {
     const {
       filmObject: { item },
     } = this.props;
+
     return item ? (
       <View style={styles.container}>
         <View style={styles.contentView}>
@@ -24,6 +61,19 @@ export default class TopFilmsListItem extends Component {
             </View>
           </View>
         </View>
+        <TouchableOpacity
+          style={styles.heartContainer}
+          onPress={this.favouriteSelected.bind(this)}
+        >
+          <Animated.Image
+            style={{
+              width: 44,
+              height: 44,
+              transform: [{ scale: this.springValue }],
+            }}
+            source={item.isFavourite ? Images.heart_filled : Images.heart_empty}
+          />
+        </TouchableOpacity>
         <View style={styles.separator} />
       </View>
     ) : null;
@@ -49,7 +99,7 @@ var styles = StyleSheet.create({
   ratingContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 10
+    marginTop: 10,
   },
   image: {
     width: 90,
@@ -76,12 +126,19 @@ var styles = StyleSheet.create({
   },
   rating: {
     fontSize: 22,
-    color: 'yellow',
+    color: '#FFD236',
   },
   separator: {
     height: 1,
     backgroundColor: 'black',
     opacity: 0.6,
     bottom: 0,
+  },
+  heartContainer: {
+    position: 'absolute',
+    width: 44,
+    height: 44,
+    bottom: 15,
+    right: 10,
   },
 });

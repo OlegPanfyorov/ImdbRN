@@ -1,6 +1,6 @@
 import { call } from 'redux-saga/effects';
 import { BACKEND_URL, TOKEN } from '../config';
-import { stringify } from 'query-string';
+import { stringify } from 'query-string'
 
 /**
  * Wrapper for debugging API requests
