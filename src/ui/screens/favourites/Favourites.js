@@ -21,7 +21,6 @@ export default class Favourites extends Component {
   }
 
   _renderItem({ item, index }) {
-    console.log(item);
     return (
       <View style={{ flex: 1 }}>
         <Image
@@ -43,7 +42,6 @@ export default class Favourites extends Component {
 
   render() {
     const { entries } = this.state;
-    console.log(entries);
     return (
       <View style={styles.container}>
         <View style={styles.carouselContainer}>

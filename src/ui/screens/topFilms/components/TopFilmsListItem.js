@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   Animated,
 } from 'react-native';
-const imdbIcon = require('../../../../assets/images/imdb_small.png');
 import Images from '../../../../assets/images';
 
 export default class TopFilmsListItem extends Component {
@@ -21,8 +20,10 @@ export default class TopFilmsListItem extends Component {
       filmObject: {
         item: { isFavourite = 0 },
       },
+      favouriteSelected
     } = this.props;
-
+    
+    favouriteSelected()
     if (!isFavourite) this.playFavouriteAnimation();
   }
 
@@ -57,7 +58,7 @@ export default class TopFilmsListItem extends Component {
             <Text style={styles.year}>{item.year}</Text>
             <View style={styles.ratingContainer}>
               <Text style={styles.rating}>{item.rating}</Text>
-              <Image style={styles.imdbIcon} source={imdbIcon} />
+              <Image style={styles.imdbIcon} source={Images.imdb_small} />
             </View>
           </View>
         </View>

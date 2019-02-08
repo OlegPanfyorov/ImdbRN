@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { FlatList, View, StyleSheet, Dimensions, Text } from 'react-native';
 import TopFilmsListItem from './TopFilmsListItem';
-const { height, width } = Dimensions.get('window');
 
 const EmptyComponent = ({ title }) => (
   <View style={styles.emptyContainer}>
@@ -21,7 +20,7 @@ export default class TopFilmsList extends Component {
   }
 
   _renderItem = item => {
-    return <TopFilmsListItem id={item.idIMDB} filmObject={item} />;
+    return <TopFilmsListItem id={item.idIMDB} filmObject={item} favouriteSelected={this.props.addFilmToFavourites(item.idIMDB)}  />;
   };
 
   render() {
@@ -57,7 +56,7 @@ var styles = StyleSheet.create({
     marginLeft: 0,
     marginRight: 0,
     marginBottom: 0,
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#e7e7e7',
@@ -69,4 +68,7 @@ var styles = StyleSheet.create({
       width: 1,
     },
   },
+  emptyText: {
+    color: 'white'
+  }
 });

@@ -1,11 +1,15 @@
-import { FILMS_LOAD, FILMS_LOADED } from "./actions";
+import { FILMS_LOADED, FILM_ADDED, FILM_REMOVED } from './actions';
 
-const initialState = {films: [], favourites: []};
+const initialState = { films: [], favourites: [] };
 
 function reducer(state = initialState, action) {
   switch (action.type) {
     case FILMS_LOADED:
-      return action.payload
+      return action.payload;
+    case FILM_ADDED:
+      return action.payload;
+    case FILM_REMOVED:
+      return action.payload;
     default:
       return state;
   }
