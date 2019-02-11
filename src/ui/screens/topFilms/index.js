@@ -2,11 +2,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TopFilms from './TopFilms';
 import { loadFilms, addFilmToFavourites, removeFilmFromFavourites } from '../../../modules/films/actions';
+import { filmsListSelector, favouriteFilmsSelector } from '../../../modules/films/selectors';
 
 function mapStateToProps(state) {
+  // console.log('state', state)
   return {
-    films: state.films,
-    favourites: state.favourites
+    films: filmsListSelector(state),
+    // favourites: favouriteFilmsSelector(state)
   };
 }
 

@@ -18,12 +18,10 @@ export default class TopFilmsListItem extends Component {
   favouriteSelected() {
     const {
       filmObject: {
-        item: { isFavourite = 0 },
-      },
-      favouriteSelected
+        item: { isFavourite = 0, idIMDB },
+      }
     } = this.props;
-    
-    favouriteSelected()
+    this.props.favouriteSelected(idIMDB)
     if (!isFavourite) this.playFavouriteAnimation();
   }
 

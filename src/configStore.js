@@ -27,6 +27,7 @@ export default () => {
 
   sagaMiddleware.run(rootSaga);
 
-  let persistor = persistStore(store);
-  return { store, persistor };
+  return { store };
+  // let persistor = persistStore(store);
+  // return { store, persistor };
 };

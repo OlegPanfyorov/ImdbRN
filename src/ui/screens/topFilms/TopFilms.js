@@ -7,16 +7,17 @@ export default class TopFilms extends Component {
     this.props.loadFilms();
   }
 
-  addSelected() {
-    this.props.addFilmToFavourites()
+  addSelected(id) {
+    this.props.addFilmToFavourites(id);
   }
-  
+
   render() {
-    const { films, isLoading } = this.props;
+    const { films, isLoading, favourites } = this.props;
+    console.log('films', films);
     return (
       <View style={styles.container}>
         <TopFilmsList
-          filmItems={films}
+          filmItems={films || []}
           isLoading={isLoading}
           addFilmToFavourites={this.addSelected.bind(this)}
         />

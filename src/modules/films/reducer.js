@@ -1,20 +1,35 @@
-import { FILMS_LOADED, FILM_ADDED, FILM_REMOVED } from './actions';
+import {
+  FILMS_LOADED,
+  FILM_ADD_TO_FAVOURITES,
+  FILM_REMOVE_FROM_FAVOURITES,
+} from './actions';
 
-const initialState = { films: [], favourites: [] };
+const initialState = { allFilms: {}, favouriteIDs: [] };
 
 function reducer(state = initialState, action) {
   switch (action.type) {
     case FILMS_LOADED:
-      return action.payload;
-    case FILM_ADDED:
-      return action.payload;
-    case FILM_REMOVED:
-      return action.payload;
+      let convertedFilms = {};
+      action.payload.forEach(element => {
+        convertedFilms[element.idIMDB] = element;
+      });
+      return {
+        allFilms: convertedFilms,
+        favouriteIDs: state.favouriteIDs,
+      };
+    case FILM_ADD_TO_FAVOURITES:
+      let favouritesToAdd = state.favouriteIDs;
+      favouritesToAdd.push(action.payload);
+      return { ...state, favouriteIDs: favouritesToAdd };
+    case FILM_REMOVE_FROM_FAVOURITES:
+      let favouritesToRemove = state.favouriteIDs;
+      return {
+        ...state,
+        favouriteIDs: favouritesToRemove.filter(id => id != action.payload),
+      };
     default:
-      return state;
+      return { ...state };
   }
-
-  return state;
 }
 
 export default reducer;

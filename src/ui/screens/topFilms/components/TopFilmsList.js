@@ -20,7 +20,9 @@ export default class TopFilmsList extends Component {
   }
 
   _renderItem = item => {
-    return <TopFilmsListItem id={item.idIMDB} filmObject={item} favouriteSelected={this.props.addFilmToFavourites(item.idIMDB)}  />;
+    return <TopFilmsListItem id={item.idIMDB} filmObject={item} favouriteSelected={(value)=>{
+      this.props.addFilmToFavourites(value)
+    }}  />;
   };
 
   render() {
@@ -35,9 +37,10 @@ export default class TopFilmsList extends Component {
         extraData={filmItems}
         showsVerticalScrollIndicator={0}
         ListEmptyComponent={
-          <EmptyComponent title="Nothing here, come back later.." />
+          <EmptyComponent title="No films" />
         }
         refreshing={isLoading}
+        contentContainerStyle={{ flexGrow: 1 }}
       />
     );
   }
@@ -52,23 +55,12 @@ var styles = StyleSheet.create({
   },
   emptyContainer: {
     flex: 1,
-    marginTop: 0,
-    marginLeft: 0,
-    marginRight: 0,
-    marginBottom: 0,
     backgroundColor: 'transparent',
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#e7e7e7',
-    shadowOpacity: 1,
-    shadowRadius: 2,
-    borderRadius: 5,
-    shadowOffset: {
-      height: 1,
-      width: 1,
-    },
   },
   emptyText: {
-    color: 'white'
+    color: 'white',
+    fontSize: 25
   }
 });
