@@ -35,6 +35,7 @@ export default class Favourites extends Component {
             itemWidth={width * 0.7}
             sliderHeight={height * 0.5}
             itemHeight={height * 0.5}
+            removeClippedSubviews={false}
           />
         </View>
       </View>
