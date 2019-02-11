@@ -20,9 +20,20 @@ export default class TopFilmsList extends Component {
   }
 
   _renderItem = item => {
-    return <TopFilmsListItem id={item.idIMDB} filmObject={item} favouriteSelected={(value)=>{
-      this.props.addFilmToFavourites(value)
-    }}  />;
+    const { favourites } = this.props;
+    const existInFavourite = favourites.find((object)=> {
+      return object.idIMDB === item.item.idIMDB
+    })
+    return (
+      <TopFilmsListItem
+        id={item.idIMDB}
+        filmObject={item}
+        isFavourite={existInFavourite}
+        favouriteSelected={value => {
+          this.props.addFilmToFavourites(value);
+        }}
+      />
+    );
   };
 
   render() {
@@ -36,9 +47,7 @@ export default class TopFilmsList extends Component {
         renderItem={this._renderItem}
         extraData={filmItems}
         showsVerticalScrollIndicator={0}
-        ListEmptyComponent={
-          <EmptyComponent title="No films" />
-        }
+        ListEmptyComponent={<EmptyComponent title="No films" />}
         refreshing={isLoading}
         contentContainerStyle={{ flexGrow: 1 }}
       />
@@ -61,6 +70,6 @@ var styles = StyleSheet.create({
   },
   emptyText: {
     color: 'white',
-    fontSize: 25
-  }
+    fontSize: 25,
+  },
 });

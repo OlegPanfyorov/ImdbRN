@@ -13,11 +13,12 @@ export default class TopFilms extends Component {
 
   render() {
     const { films, isLoading, favourites } = this.props;
-    console.log('films', films);
+    // console.log('favourites', favourites);
     return (
       <View style={styles.container}>
         <TopFilmsList
           filmItems={films || []}
+          favourites={favourites || []}
           isLoading={isLoading}
           addFilmToFavourites={this.addSelected.bind(this)}
         />

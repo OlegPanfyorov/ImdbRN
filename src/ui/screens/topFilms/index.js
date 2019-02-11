@@ -5,10 +5,10 @@ import { loadFilms, addFilmToFavourites, removeFilmFromFavourites } from '../../
 import { filmsListSelector, favouriteFilmsSelector } from '../../../modules/films/selectors';
 
 function mapStateToProps(state) {
-  // console.log('state', state)
+  // console.log('state', state
   return {
     films: filmsListSelector(state),
-    // favourites: favouriteFilmsSelector(state)
+    favourites: favouriteFilmsSelector(state)
   };
 }
 

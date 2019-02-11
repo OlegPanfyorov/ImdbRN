@@ -18,8 +18,9 @@ export default class TopFilmsListItem extends Component {
   favouriteSelected() {
     const {
       filmObject: {
-        item: { isFavourite = 0, idIMDB },
-      }
+        item: { idIMDB },
+      },
+      isFavourite
     } = this.props;
     this.props.favouriteSelected(idIMDB)
     if (!isFavourite) this.playFavouriteAnimation();
@@ -45,6 +46,7 @@ export default class TopFilmsListItem extends Component {
   render() {
     const {
       filmObject: { item },
+      isFavourite
     } = this.props;
 
     return item ? (
@@ -70,7 +72,7 @@ export default class TopFilmsListItem extends Component {
               height: 44,
               transform: [{ scale: this.springValue }],
             }}
-            source={item.isFavourite ? Images.heart_filled : Images.heart_empty}
+            source={isFavourite ? Images.heart_filled : Images.heart_empty}
           />
         </TouchableOpacity>
         <View style={styles.separator} />

@@ -1,16 +1,15 @@
-import { createSelector } from 'reselect'
+import { createSelector } from 'reselect';
 
-const filmsIdsSelector = state => state.films.allFilms || {}
-const favouriteIdsSelector = state => state.favouriteIDs || []
+const filmsSelector = state => state.films.allFilms || {};
+const favouriteIdsSelector = state => state.films.favouriteIDs || [];
 
 export const filmsListSelector = createSelector(
-    filmsIdsSelector,
-    items => Object.values(items)
-)
+  filmsSelector,
+  items => Object.values(items),
+);
 
 export const favouriteFilmsSelector = createSelector(
-    filmsListSelector,
-    favouriteIdsSelector,
-    (items, favourites) => items.filter((film)=> favourites.includes(film.idIMDB))
-)
-
+  filmsSelector,
+  favouriteIdsSelector,
+  (items, favourites) => favourites.map(id => items[id]),
+);
