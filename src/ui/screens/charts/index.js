@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Charts from './Charts';
-// import { loadFilms } from '../../../modules/films/actions';
+import { chartDataSelector } from '../../../modules/films/selectors';
 
 function mapStateToProps(state) {
   return {
-    // films: state.films,
+    chartData: chartDataSelector(state),
   };
 }
 

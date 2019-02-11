@@ -13,3 +13,8 @@ export const favouriteFilmsSelector = createSelector(
   favouriteIdsSelector,
   (items, favourites) => favourites.map(id => items[id]),
 );
+
+export const chartDataSelector = createSelector(
+  filmsSelector,
+  items => Object.values(items),
+);

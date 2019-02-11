@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import { CachedImage } from 'react-native-cached-image';
 import Carousel from 'react-native-snap-carousel';
-const { height, width } = Dimensions.get('window');
 import Images from '../../../assets/images';
+const { height, width } = Dimensions.get('window');
 
 export default class Favourites extends Component {
   _renderItem({ item, index }) {
