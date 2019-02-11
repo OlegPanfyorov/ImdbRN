@@ -6,23 +6,21 @@ const { height, width } = Dimensions.get('window');
 import Images from '../../../assets/images';
 
 export default class Favourites extends Component {
-  removeFromFavourites(item) {
-    this.props.removeFromFavourites();
-  }
-  
-  _renderItem = item => {
+  _renderItem({ item, index }) {
     return (
       <View style={{ flex: 1 }}>
         <CachedImage source={{ uri: item.urlPoster }} style={styles.image} />
         <TouchableOpacity
           style={styles.heartContainer}
-          onPress={this.removeFromFavourites().bind(this)}
+          onPress={()=>{
+            this.props.removeFromFavourites(item.idIMDB)
+          }}
         >
           <CachedImage style={styles.heartIcon} source={Images.heart_filled} />
         </TouchableOpacity>
       </View>
     );
-  };
+  }
 
   render() {
     const { favourites } = this.props;
@@ -32,7 +30,7 @@ export default class Favourites extends Component {
           <Carousel
             data={favourites || []}
             // style={styles.carousel}
-            renderItem={this._renderItem}
+            renderItem={this._renderItem.bind(this)}
             sliderWidth={width}
             itemWidth={width * 0.7}
             sliderHeight={height * 0.5}

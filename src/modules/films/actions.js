@@ -26,5 +26,6 @@ export function addFilmToFavourites(id) {
 export function removeFilmFromFavourites(id) {
   return {
     type: FILM_REMOVE_FROM_FAVOURITES,
+    payload: id,
   };
 }

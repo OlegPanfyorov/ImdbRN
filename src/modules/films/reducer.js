@@ -18,7 +18,10 @@ function reducer(state = initialState, action) {
         favouriteIDs: state.favouriteIDs,
       };
     case FILM_ADD_TO_FAVOURITES:
-      return { ...state, favouriteIDs: [...state.favouriteIDs, action.payload] };
+      return {
+        ...state,
+        favouriteIDs: [...state.favouriteIDs, action.payload],
+      };
     case FILM_REMOVE_FROM_FAVOURITES:
       let favouritesToRemove = state.favouriteIDs;
       return {
