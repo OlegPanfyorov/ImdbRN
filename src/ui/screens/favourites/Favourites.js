@@ -1,52 +1,36 @@
 import React, { Component } from 'react';
-import {
-  View,
-  StyleSheet,
-  Dimensions,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import { CachedImage } from 'react-native-cached-image';
 import Carousel from 'react-native-snap-carousel';
-import mockedMovies from '../../../api/mocks/films.json';
 const { height, width } = Dimensions.get('window');
 import Images from '../../../assets/images';
 
 export default class Favourites extends Component {
-  constructor() {
-    super();
-    const { data: { movies = [] } = {} } = mockedMovies;
-    this.state = {
-      entries: movies,
-    };
+  removeFromFavourites(item) {
+    this.props.removeFromFavourites();
   }
-
-  _renderItem({ item, index }) {
+  
+  _renderItem = item => {
     return (
       <View style={{ flex: 1 }}>
-        <Image
-          source={{ uri: item.urlPoster }}
-          style={{ width: '100%', height: '100%' }}
-        />
-        <TouchableOpacity style={styles.heartContainer} onPress={() => {}}>
-          <Image
-            style={{
-              width: 44,
-              height: 44,
-            }}
-            source={Images.heart_filled}
-          />
+        <CachedImage source={{ uri: item.urlPoster }} style={styles.image} />
+        <TouchableOpacity
+          style={styles.heartContainer}
+          onPress={this.removeFromFavourites().bind(this)}
+        >
+          <CachedImage style={styles.heartIcon} source={Images.heart_filled} />
         </TouchableOpacity>
       </View>
     );
-  }
+  };
 
   render() {
-    const { entries } = this.state;
+    const { favourites } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.carouselContainer}>
           <Carousel
-            data={entries}
+            data={favourites || []}
             // style={styles.carousel}
             renderItem={this._renderItem}
             sliderWidth={width}
@@ -75,6 +59,10 @@ const styles = StyleSheet.create({
     height: 300,
     width: 200,
   },
+  image: {
+    width: '100%',
+    height: '100%',
+  },
   title: {
     fontSize: 16,
   },
@@ -84,5 +72,9 @@ const styles = StyleSheet.create({
     height: 44,
     bottom: 15,
     right: 10,
+  },
+  heartIcon: {
+    width: 44,
+    height: 44,
   },
 });

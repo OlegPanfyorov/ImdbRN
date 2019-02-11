@@ -1,17 +1,18 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Favourites from './Favourites';
-// import { loadFilms } from '../../../modules/films/actions';
+import { favouriteFilmsSelector } from '../../../modules/films/selectors';
+import { removeFilmFromFavourites } from '../../../modules/films/actions';
 
 function mapStateToProps(state) {
   return {
-    // films: state.films,
+    favourites: favouriteFilmsSelector(state),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    // loadFilms: bindActionCreators(loadFilms, dispatch),
+    removeFromFavourites: bindActionCreators(removeFilmFromFavourites, dispatch),
   };
 }
 
