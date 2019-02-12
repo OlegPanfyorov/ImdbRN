@@ -2,9 +2,10 @@ import {
   FILMS_LOADED,
   FILM_ADD_TO_FAVOURITES,
   FILM_REMOVE_FROM_FAVOURITES,
+  FILMS_UPDATE_SORTING,
 } from './actions';
 
-const initialState = { allFilms: {}, favouriteIDs: [] };
+const initialState = { allFilms: {}, favouriteIDs: [], sortingType: null };
 
 function reducer(state = initialState, action) {
   switch (action.type) {
@@ -27,6 +28,11 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         favouriteIDs: favouritesToRemove.filter(id => id != action.payload),
+      };
+    case FILMS_UPDATE_SORTING:
+      return {
+        ...state,
+        sortingType: action.payload,
       };
     default:
       return { ...state };

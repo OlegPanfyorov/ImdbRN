@@ -14,18 +14,16 @@ const { height, width } = Dimensions.get('window');
 const pickerValues = ['Not sorted', 'By Title', 'By Year'];
 
 export default class Favourites extends Component {
-  constructor() {
+  constructor(props) {
     super();
-
-    this.state = {
-      currentValue: pickerValues[0],
-    };
+    if (!props.currentSortingValue) {
+      props.updateSorting(pickerValues[0]);
+    }
   }
 
   sortingSelected(value) {
-    this.setState({
-      currentValue: value,
-    });
+    const { updateSorting } = this.props;
+    updateSorting(value);
   }
 
   _renderItem({ item, index }) {
@@ -45,8 +43,7 @@ export default class Favourites extends Component {
   }
 
   render() {
-    const { favourites } = this.props;
-    const { currentValue } = this.state;
+    const { favourites, currentSortingValue } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.carouselContainer}>
@@ -67,7 +64,7 @@ export default class Favourites extends Component {
               this.refs.picker.show();
             }}
           >
-            {currentValue}
+            {currentSortingValue}
           </Text>
           <SimplePicker
             ref={'picker'}
