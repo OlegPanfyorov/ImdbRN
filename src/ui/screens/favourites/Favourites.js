@@ -5,6 +5,7 @@ import {
   Dimensions,
   TouchableOpacity,
   Text,
+  Image
 } from 'react-native';
 import { CachedImage } from 'react-native-cached-image';
 import Carousel from 'react-native-snap-carousel';
@@ -30,6 +31,14 @@ export default class Favourites extends Component {
     return (
       <View style={{ flex: 1 }}>
         <CachedImage source={{ uri: item.urlPoster }} style={styles.image} />
+        <View style={styles.infoContainer}>
+          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.year}>{item.year}</Text>
+          <View style={styles.ratingContainer}>
+            <Text style={styles.rating}>{item.rating}</Text>
+            <Image style={styles.imdbIcon} source={Images.imdb_small} />
+          </View>
+        </View>
         <TouchableOpacity
           style={styles.heartContainer}
           onPress={() => {
@@ -124,5 +133,40 @@ const styles = StyleSheet.create({
     marginHorizontal: 30,
     height: 30,
     color: 'white',
+  },
+  infoContainer: {
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: 74,
+  },
+  ratingContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 5,
+    marginHorizontal: 15,
+  },
+  title: {
+    fontSize: 14,
+    marginHorizontal: 15,
+    marginTop: 10,
+    color: 'white',
+  },
+  year: {
+    fontSize: 12,
+    marginTop: 5,
+    marginHorizontal: 15,
+    color: 'gray',
+  },
+  imdbIcon: {
+    width: 14,
+    height: 14,
+    marginLeft: 10,
+  },
+  rating: {
+    fontSize: 12,
+    color: '#FFD236',
   },
 });
