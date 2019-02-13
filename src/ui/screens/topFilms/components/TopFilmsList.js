@@ -46,7 +46,7 @@ export default class TopFilmsList extends Component {
         keyExtractor={this._keyExtractor}
         renderItem={this._renderItem}
         extraData={filmItems}
-        showsVerticalScrollIndicator={0}
+        // showsVerticalScrollIndicator={0}
         ListEmptyComponent={<EmptyComponent title="No films" />}
         refreshing={isLoading}
         contentContainerStyle={{ flexGrow: 1 }}
