@@ -75,8 +75,8 @@ import com.android.build.OutputFile
 project.ext.react = [
         entryFile: "index.js",
         bundleAssetName: "index.android.bundle",
-        bundleInDebug: true
-//        bundleInRelease: true,
+//        bundleInDebug: true
+        bundleInRelease: true
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -110,6 +110,16 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
+    signingConfigs {
+        release {
+            if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
+                storeFile file(MYAPP_RELEASE_STORE_FILE)
+                storePassword MYAPP_RELEASE_STORE_PASSWORD
+                keyAlias MYAPP_RELEASE_KEY_ALIAS
+                keyPassword MYAPP_RELEASE_KEY_PASSWORD
+            }
+        }
+    }
     splits {
         abi {
             reset()
@@ -122,6 +132,7 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     aaptOptions { cruncherEnabled = false }
@@ -141,11 +152,6 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-vector-icons')
-    compile project(':react-native-svg')
-    compile project(':react-native-splash-screen')
-    compile project(':react-native-gesture-handler')
-    compile project(':react-native-fetch-blob')
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-svg')
     implementation project(':react-native-splash-screen')
