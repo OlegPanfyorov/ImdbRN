@@ -11,6 +11,10 @@ export default class TopFilms extends Component {
     this.props.addFilmToFavourites(id);
   }
 
+  removeSelected(id) {
+    this.props.removeFilmFromFavourites(id);
+  }
+
   render() {
     const { films, isLoading, favourites } = this.props;
     // console.log('favourites', favourites);
@@ -24,6 +28,7 @@ export default class TopFilms extends Component {
           favourites={favourites || []}
           isLoading={isLoading}
           addFilmToFavourites={this.addSelected.bind(this)}
+          removeFilmFromFavourites={this.removeSelected.bind(this)}
         />
       </View>
     );

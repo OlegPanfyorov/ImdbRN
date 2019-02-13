@@ -31,18 +31,18 @@ export default class TopFilmsList extends Component {
         filmObject={item}
         isFavourite={existInFavourite}
         favouriteSelected={value => {
-          this.props.addFilmToFavourites(value);
+          if (existInFavourite) {
+            this.props.removeFilmFromFavourites(value);
+          } else {
+            this.props.addFilmToFavourites(value);
+          }
         }}
       />
     );
   };
 
   renderSeparator = () => {
-    return (
-      <View
-        style={styles.separator}
-      />
-    );
+    return <View style={styles.separator} />;
   };
 
   render() {
@@ -87,5 +87,5 @@ var styles = StyleSheet.create({
     width: '90%',
     backgroundColor: 'gray',
     marginLeft: '5%',
-  }
+  },
 });

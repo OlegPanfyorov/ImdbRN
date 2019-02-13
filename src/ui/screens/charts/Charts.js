@@ -4,16 +4,6 @@ import { LineChart } from 'react-native-chart-kit';
 const { width } = Dimensions.get('window');
 const chartDimension = width - 30;
 
-let data = {
-  labels: ['1970', '1980', '1990', '2000', '2010', '2020'],
-  datasets: [
-    {
-      data: [12, 14, 16, 4, 7, 3],
-      color: () => `rgba(255,210,54, 0.8)`,
-    },
-  ],
-};
-
 const chartConfig = {
   backgroundGradientFrom: '#0E1D39',
   backgroundGradientTo: '#0E1D39',
