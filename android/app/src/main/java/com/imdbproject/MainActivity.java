@@ -22,6 +22,13 @@ public class MainActivity extends ReactActivity {
     }
 
     @Override
+    protected void onPause() {
+        SplashScreen.hide(this);
+        super.onPause();
+    }
+
+
+    @Override
     protected String getMainComponentName() {
         return "Imdb";
     }
