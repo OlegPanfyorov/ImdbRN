@@ -1,4 +1,4 @@
-package com.happyhome;
+package com.imdbproject;
 
 import android.app.Application;
 
@@ -11,8 +11,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.BuildConfig;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import java.util.Arrays;
 import java.util.List;
 
@@ -30,8 +29,8 @@ public class MainApplication extends Application implements ReactApplication {
                     new MainReactPackage(),
             new SvgPackage(),
             new RNGestureHandlerPackage(),
-            new RNFetchBlobPackage(),
-                    new RNGestureHandlerPackage()
+                    new SplashScreenReactPackage(),  //here
+            new RNFetchBlobPackage()
             );
         }
 

@@ -73,7 +73,8 @@ import com.android.build.OutputFile
  */
 
 project.ext.react = [
-        entryFile: "index.js"
+        entryFile: "index.js",
+        jsBundleDirRelease: "$buildDir/intermediates/merged_assets/release/mergeReleaseAssets/out"
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -137,6 +138,11 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-vector-icons')
+    implementation project(':react-native-svg')
+    implementation project(':react-native-splash-screen')
+    implementation project(':react-native-gesture-handler')
+    implementation project(':react-native-fetch-blob')
     implementation project(':react-native-svg')
     implementation project(':react-native-gesture-handler')
     implementation project(':react-native-fetch-blob')
