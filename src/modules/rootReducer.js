@@ -4,14 +4,14 @@ import storage from 'redux-persist/lib/storage';
 
 import filmsReducer from './films/reducer';
 
-const persistConfig = {
+const primary = {
   key: 'root',
   storage,
-  timeout: 120000,
+  // whitelist: ['films']
 };
 
 export default persistReducer(
-  persistConfig,
+  primary,
   combineReducers({
     films: filmsReducer,
   }),

@@ -18,6 +18,7 @@ function reducer(state = initialState, action) {
         allFilms: convertedFilms,
         favouriteIDs: state.favouriteIDs,
       };
+
     case FILM_ADD_TO_FAVOURITES:
       return {
         ...state,

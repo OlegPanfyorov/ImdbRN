@@ -2,7 +2,6 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import { persistStore } from 'redux-persist';
-
 import { rootReducer, rootSaga } from './modules';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -22,12 +21,12 @@ function configMiddleware() {
 export default () => {
   let store = createStore(
     rootReducer,
+    undefined,
     compose(applyMiddleware(...configMiddleware())),
   );
 
   sagaMiddleware.run(rootSaga);
 
-  return { store };
-  // let persistor = persistStore(store);
-  // return { store, persistor };
+  let persistor = persistStore(store);
+  return { store, persistor };
 };
