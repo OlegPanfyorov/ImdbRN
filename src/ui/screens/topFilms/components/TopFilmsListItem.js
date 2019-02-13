@@ -20,9 +20,9 @@ export default class TopFilmsListItem extends Component {
       filmObject: {
         item: { idIMDB },
       },
-      isFavourite
+      isFavourite,
     } = this.props;
-    this.props.favouriteSelected(idIMDB)
+    this.props.favouriteSelected(idIMDB);
     if (!isFavourite) this.playFavouriteAnimation();
   }
 
@@ -31,35 +31,39 @@ export default class TopFilmsListItem extends Component {
     Animated.sequence([
       Animated.spring(this.springValue, {
         toValue: 1.2,
-        friction: 1
+        friction: 1,
       }),
       Animated.spring(this.springValue, {
-        toValue: 1
+        toValue: 1,
       }),
     ]).start();
   }
 
   _renderImage(object) {
-    return <Image source={{ uri: object.urlPoster }} style={styles.image} />;
+    return (
+      <Image
+        source={{ uri: object.urlPoster }}
+        style={styles.image}
+        resizeMode={'contain'}
+      />
+    );
   }
 
   render() {
     const {
       filmObject: { item },
-      isFavourite
+      isFavourite,
     } = this.props;
 
     return item ? (
       <View style={styles.container}>
+        {this._renderImage(item)}
         <View style={styles.contentView}>
-          {this._renderImage(item)}
-          <View style={styles.descriptionView}>
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.year}>{item.year}</Text>
-            <View style={styles.ratingContainer}>
-              <Text style={styles.rating}>{item.rating}</Text>
-              <Image style={styles.imdbIcon} source={Images.imdb_small} />
-            </View>
+          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.year}>{item.year}</Text>
+          <View style={styles.ratingContainer}>
+            <Text style={styles.rating}>{item.rating}</Text>
+            <Image style={styles.imdbIcon} source={Images.imdb_small} />
           </View>
         </View>
         <TouchableOpacity
@@ -75,7 +79,6 @@ export default class TopFilmsListItem extends Component {
             source={isFavourite ? Images.heart_filled : Images.heart_empty}
           />
         </TouchableOpacity>
-        <View style={styles.separator} />
       </View>
     ) : null;
   }
@@ -84,17 +87,17 @@ export default class TopFilmsListItem extends Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: 164,
-    flexDirection: 'column',
+    flexDirection: 'row',
+  },
+  image: {
+    width: 90,
+    height: 134,
+    marginRight: 15,
+    marginTop: 15,
+    marginBottom: 15,
   },
   contentView: {
     flex: 1,
-    flexDirection: 'row',
-  },
-  descriptionView: {
-    marginTop: 15,
-    marginBottom: 15,
-    marginRight: 15,
     flexDirection: 'column',
   },
   ratingContainer: {
@@ -102,18 +105,11 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
   },
-  image: {
-    width: 90,
-    height: 134,
-    alignContent: 'center',
-    marginRight: 15,
-    marginTop: 15,
-    alignItems: 'center',
-  },
+
   title: {
     fontSize: 22,
-    marginRight: 15,
     color: 'white',
+    marginTop: 15
   },
   year: {
     fontSize: 16,
@@ -128,12 +124,6 @@ var styles = StyleSheet.create({
   rating: {
     fontSize: 22,
     color: '#FFD236',
-  },
-  separator: {
-    height: 1,
-    backgroundColor: 'black',
-    opacity: 0.6,
-    bottom: 0,
   },
   heartContainer: {
     position: 'absolute',

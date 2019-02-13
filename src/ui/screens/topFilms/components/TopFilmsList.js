@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FlatList, View, StyleSheet, Dimensions, Text } from 'react-native';
 import TopFilmsListItem from './TopFilmsListItem';
+const { width } = Dimensions.get('window');
 
 const EmptyComponent = ({ title }) => (
   <View style={styles.emptyContainer}>
@@ -21,9 +22,9 @@ export default class TopFilmsList extends Component {
 
   _renderItem = item => {
     const { favourites } = this.props;
-    const existInFavourite = favourites.find((object)=> {
-      return object.idIMDB === item.item.idIMDB
-    })
+    const existInFavourite = favourites.find(object => {
+      return object.idIMDB === item.item.idIMDB;
+    });
     return (
       <TopFilmsListItem
         id={item.idIMDB}
@@ -32,6 +33,14 @@ export default class TopFilmsList extends Component {
         favouriteSelected={value => {
           this.props.addFilmToFavourites(value);
         }}
+      />
+    );
+  };
+
+  renderSeparator = () => {
+    return (
+      <View
+        style={styles.separator}
       />
     );
   };
@@ -50,6 +59,7 @@ export default class TopFilmsList extends Component {
         ListEmptyComponent={<EmptyComponent title="No films" />}
         refreshing={isLoading}
         contentContainerStyle={{ flexGrow: 1 }}
+        ItemSeparatorComponent={this.renderSeparator}
       />
     );
   }
@@ -72,4 +82,10 @@ var styles = StyleSheet.create({
     color: 'white',
     fontSize: 25,
   },
+  separator: {
+    height: 1,
+    width: '90%',
+    backgroundColor: 'gray',
+    marginLeft: '5%',
+  }
 });
