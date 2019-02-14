@@ -17,6 +17,7 @@ function reducer(state = initialState, action) {
       return {
         allFilms: convertedFilms,
         favouriteIDs: state.favouriteIDs,
+        sortingType: state.sortingType
       };
 
     case FILM_ADD_TO_FAVOURITES:
@@ -40,7 +41,7 @@ function reducer(state = initialState, action) {
         sortingType: action.payload,
       };
     default:
-      return { ...state };
+      return state;
   }
 }
 

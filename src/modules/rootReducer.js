@@ -1,18 +1,12 @@
 import { combineReducers } from 'redux';
-import { persistReducer } from 'redux-persist';
+import { persistReducer, persistCombineReducers } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import filmsReducer from './films/reducer';
 
-const primary = {
+const config = {
   key: 'root',
   storage,
-  // whitelist: ['films']
 };
 
-export default persistReducer(
-  primary,
-  combineReducers({
-    films: filmsReducer,
-  }),
-);
+export default persistCombineReducers(config, { films: filmsReducer });

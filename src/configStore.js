@@ -21,7 +21,6 @@ function configMiddleware() {
 export default () => {
   let store = createStore(
     rootReducer,
-    undefined,
     compose(applyMiddleware(...configMiddleware())),
   );
 
