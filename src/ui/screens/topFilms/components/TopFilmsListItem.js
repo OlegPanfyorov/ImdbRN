@@ -15,6 +15,14 @@ export default class TopFilmsListItem extends Component {
     this.springValue = new Animated.Value(1);
   }
 
+  directorSelected() {
+    const {
+      filmObject,
+      directorSelected,
+    } = this.props;
+    directorSelected(filmObject)
+  }
+
   favouriteSelected() {
     const {
       filmObject: {
@@ -55,6 +63,9 @@ export default class TopFilmsListItem extends Component {
       isFavourite,
     } = this.props;
 
+    const genres = item.genres.join(', ');
+    const countries = item.countries.join(', ');
+    const directors = item.directors.map(director => director.name).join(', ');
     return item ? (
       <View style={styles.container}>
         {this._renderImage(item)}
@@ -65,6 +76,11 @@ export default class TopFilmsListItem extends Component {
             <Text style={styles.rating}>{item.rating}</Text>
             <Image style={styles.imdbIcon} source={Images.imdb_small} />
           </View>
+          <Text style={styles.genre}>{genres}</Text>
+          <Text style={styles.country}>{countries}</Text>
+          <TouchableOpacity onPress={this.directorSelected.bind(this)}>
+            <Text style={styles.directors}>{directors}</Text>
+          </TouchableOpacity>
         </View>
         <TouchableOpacity
           style={styles.heartContainer}
@@ -109,7 +125,7 @@ var styles = StyleSheet.create({
   title: {
     fontSize: 22,
     color: 'white',
-    marginTop: 15
+    marginTop: 15,
   },
   year: {
     fontSize: 16,
@@ -124,6 +140,25 @@ var styles = StyleSheet.create({
   rating: {
     fontSize: 22,
     color: '#FFD236',
+  },
+  genre: {
+    fontSize: 16,
+    marginTop: 10,
+    color: 'gray',
+    marginRight: 70,
+  },
+  country: {
+    fontSize: 16,
+    marginTop: 10,
+    color: 'gray',
+    marginRight: 70,
+  },
+  directors: {
+    fontSize: 16,
+    marginTop: 10,
+    color: 'white',
+    marginRight: 70,
+    marginBottom: 15,
   },
   heartContainer: {
     position: 'absolute',

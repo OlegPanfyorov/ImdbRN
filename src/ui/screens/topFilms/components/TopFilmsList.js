@@ -20,6 +20,10 @@ export default class TopFilmsList extends Component {
     return `${item.idIMDB}`;
   }
 
+  directorSelected(item) {
+    console.log('item selected', item)
+  }
+
   _renderItem = item => {
     const { favourites } = this.props;
     const existInFavourite = favourites.find(object => {
@@ -30,6 +34,7 @@ export default class TopFilmsList extends Component {
         id={item.idIMDB}
         filmObject={item}
         isFavourite={existInFavourite}
+        directorSelected={this.directorSelected.bind(this)}
         favouriteSelected={value => {
           if (existInFavourite) {
             this.props.removeFilmFromFavourites(value);
