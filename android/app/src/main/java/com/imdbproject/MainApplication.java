@@ -34,7 +34,8 @@ public class MainApplication extends Application implements ReactApplication {
             new SvgPackage(),
             new SplashScreenReactPackage(),
             new RNGestureHandlerPackage(),
-            new RNFetchBlobPackage()
+            new RNFetchBlobPackage(),
+            new RNCWebViewPackage()
             );
         }
 
