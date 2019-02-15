@@ -16,11 +16,8 @@ export default class TopFilmsListItem extends Component {
   }
 
   directorSelected() {
-    const {
-      filmObject,
-      directorSelected,
-    } = this.props;
-    directorSelected(filmObject)
+    const { filmObject, directorSelected } = this.props;
+    directorSelected(filmObject);
   }
 
   favouriteSelected() {
@@ -65,7 +62,22 @@ export default class TopFilmsListItem extends Component {
 
     const genres = item.genres.join(', ');
     const countries = item.countries.join(', ');
-    const directors = item.directors.map(director => director.name).join(', ');
+    const directors = item.directors.map(director => director.name);
+    const directorsList = directors.map((name, index) => {
+      let textStyles = [styles.directors];
+      if (index != 0) {
+        textStyles.push({ marginTop: 0 });
+      }
+      return (
+        <TouchableOpacity onPress={()=>{
+          // const { filmObject, directorSelected } = this.props;
+          this.props.directorSelected(item, index);
+        }}>
+          <Text style={textStyles}>{name}</Text>
+        </TouchableOpacity>
+      );
+    });
+
     return item ? (
       <View style={styles.container}>
         {this._renderImage(item)}
@@ -78,9 +90,7 @@ export default class TopFilmsListItem extends Component {
           </View>
           <Text style={styles.genre}>{genres}</Text>
           <Text style={styles.country}>{countries}</Text>
-          <TouchableOpacity onPress={this.directorSelected.bind(this)}>
-            <Text style={styles.directors}>{directors}</Text>
-          </TouchableOpacity>
+          {directorsList}
         </View>
         <TouchableOpacity
           style={styles.heartContainer}
@@ -100,7 +110,7 @@ export default class TopFilmsListItem extends Component {
   }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',

@@ -1,17 +1,41 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import {
+  createBottomTabNavigator,
+  createAppContainer,
+  createStackNavigator,
+} from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import TopFilms from '../ui/screens/topFilms';
 import Charts from '../ui/screens/charts';
 import Favourites from '../ui/screens/favourites';
+import WebViewComponent from '../ui/screens/webView';
+import topFilms from '../ui/screens/topFilms';
+
+const FilmsStack = createStackNavigator({
+  TopFilms: {
+    screen: TopFilms,
+    navigationOptions: () => ({
+      title: 'Top Films',
+      header: null,
+    }),
+  },
+  WebView: {
+    screen: WebViewComponent,
+    navigationOptions: () => ({
+      title: '',
+      headerStyle: {
+        backgroundColor: '#0E1D39',
+      },
+      headerTintColor: 'white'
+    }),
+  },
+});
 
 const TabNavigator = createBottomTabNavigator(
   {
-    TopFilms: {
-      screen: TopFilms,
-    },
+    TopFilms: FilmsStack,
     Charts: {
       screen: Charts,
     },

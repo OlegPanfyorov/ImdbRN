@@ -1814,7 +1814,7 @@ fbjs-scripts@^1.0.0:
     semver "^5.1.0"
     through2 "^2.0.0"
 
-fbjs@^0.8.0, fbjs@^0.8.4, fbjs@^0.8.9:
+fbjs@^0.8.0, fbjs@^0.8.17, fbjs@^0.8.4, fbjs@^0.8.9:
   version "0.8.17"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.17.tgz#c4d598ead6949112653d6588b01a5cdcd9f90fdd"
   dependencies:
@@ -4151,7 +4151,6 @@ react-native-safe-area-view@^0.12.0:
 react-native-simple-picker@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/react-native-simple-picker/-/react-native-simple-picker-3.1.1.tgz#b55611df0e219e21f9c6ec63c1fcd410fc5d7139"
-  integrity sha512-w9C/G0q1vs2QO0E1rxVQavYTCE3q8tweHcLHdS/ipBWrbixMqFaXy6ZJDuD4SnUrDF8T7FMStOll5OWVmotGZg==
   dependencies:
     prop-types "^15.5.10"
 
@@ -4183,6 +4182,13 @@ react-native-vector-icons@^6.2.0:
     lodash "^4.0.0"
     prop-types "^15.6.2"
     yargs "^8.0.2"
+
+react-native-webview@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-5.2.1.tgz#8a3f2ee14488ad3d058f15c7054fb52fa47195ea"
+  dependencies:
+    escape-string-regexp "^1.0.5"
+    fbjs "^0.8.17"
 
 react-native@0.57.8:
   version "0.57.8"

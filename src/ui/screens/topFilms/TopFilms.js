@@ -3,6 +3,8 @@ import { View, StyleSheet, Text } from 'react-native';
 import TopFilmsList from './components/TopFilmsList';
 
 export default class TopFilms extends Component {
+  // static navigationOptions = { title: 'Top Films', header: { visible: false } };
+
   componentDidMount() {
     this.props.loadFilms();
   }
@@ -13,6 +15,13 @@ export default class TopFilms extends Component {
 
   removeSelected(id) {
     this.props.removeFilmFromFavourites(id);
+  }
+
+  directorSelected(directorId) {
+
+    const fullUrl = 'https://www.imdb.com/name/' + `${directorId}`
+    console.log(fullUrl)
+    this.props.navigation.navigate('WebView', {url: fullUrl})
   }
 
   render() {
@@ -29,6 +38,7 @@ export default class TopFilms extends Component {
           isLoading={isLoading}
           addFilmToFavourites={this.addSelected.bind(this)}
           removeFilmFromFavourites={this.removeSelected.bind(this)}
+          directorSelected={this.directorSelected.bind(this)}
         />
       </View>
     );

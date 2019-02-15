@@ -20,8 +20,9 @@ export default class TopFilmsList extends Component {
     return `${item.idIMDB}`;
   }
 
-  directorSelected(item) {
-    console.log('item selected', item)
+  directorSelected (item, index) {
+    const directorId = item.directors[index].id
+    this.props.directorSelected(directorId)
   }
 
   _renderItem = item => {
@@ -70,7 +71,7 @@ export default class TopFilmsList extends Component {
   }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 44,
